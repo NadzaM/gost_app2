@@ -1,0 +1,4 @@
+<resources>
+    <dimen name="icon_size">10dp</dimen> <!-- Veličina ikone -->
+    <dimen name="button_corner_radius">5dp</dimen> <!-- Radijus zaokruženja gumba -->
+</resources>

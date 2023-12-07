@@ -1,0 +1,42 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Outer stroke shape (reduced by 2x) -->
+    <item android:left="12.5dp" android:top="12.5dp" android:right="12.5dp" android:bottom="12.5dp">
+        <shape>
+            <gradient
+                android:startColor="@color/jelo_start"
+                android:endColor="@color/jelo_end"
+                android:type="linear"
+                android:angle="62" />
+            <corners android:radius="22.5dp" />
+            <stroke
+                android:width="3dp"
+                android:color="@color/color_linija" />
+        </shape>
+    </item>
+
+    <!-- Middle shape (reduced by 2x) -->
+    <item android:left="25dp" android:top="25dp" android:right="25dp" android:bottom="25dp">
+        <shape>
+            <gradient
+                android:startColor="@color/jelo_start"
+                android:endColor="@color/jelo_end"
+                android:type="linear"
+                android:angle="62" />
+            <corners android:radius="18.75dp" />
+            <stroke
+                android:width="4dp"
+                android:color="@color/color_linija" />
+        </shape>
+    </item>
+
+    <!-- Inner stroke image -->
+    <item android:left="27dp" android:top="27dp" android:right="27dp" android:bottom="27dp">
+        <clip>
+            <bitmap
+                android:src="@drawable/dorucak_button"
+                android:gravity="center" />
+        </clip>
+    </item>
+
+</layer-list>

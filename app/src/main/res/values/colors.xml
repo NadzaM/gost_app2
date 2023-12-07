@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="myButtonBackground">#FF5722</color> <!-- Ovdje možete promijeniti boju prema želji -->
+    <color name="light_pink">#f7e0e8</color> <!-- Ovdje možete promijeniti boju prema želji -->
+    <color name="dark_pink">#c77990</color> <!-- Ovdje možete promijeniti boju prema želji -->
+    <color name="pozadina_text">#99d6bbbb</color>
+    <color name="boja_text">#444444</color>
+    <color name="jelo_start">#d9c8c5</color>
+    <color name="jelo_end">#b9b9b8</color>
+    <color name="color_linija">#574f4e</color>
+    <color name="gradient_end">#e3b3b6</color>
+    <color name="gradient_begin">#fff5f5</color>
+
+</resources>

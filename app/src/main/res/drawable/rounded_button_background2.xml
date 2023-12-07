@@ -1,0 +1,14 @@
+<!-- custom_button_background.xml -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Item 1: Background Shape -->
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="#f9deee" /> <!-- Background color for the button -->
+            <!-- Define other attributes for your shape -->
+        </shape>
+    </item>
+
+    <!-- Item 2: Vector Image -->
+    <item android:drawable="@drawable/button_x"
+        android:gravity="center" /> <!-- Adjust gravity as needed -->
+</layer-list>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:background="@drawable/background_shape"
+    android:foreground="@drawable/overlay_lines_jelo"
+    >
+
+    <TextView
+        android:id="@+id/textView_naziv_jela"
+        android:layout_width="350dp"
+        android:layout_height="match_parent"
+        android:fontFamily="sans-serif"
+        android:gravity="left|center"
+        android:padding="11dp"
+        android:text="neko jelo"
+        android:textColor="@color/boja_text"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:typeface="serif"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textView_opis"
+        android:layout_width="160dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="24dp"
+        android:fontFamily="sans-serif"
+        android:gravity="top|left|center"
+        android:padding="1dp"
+        android:text="(opis)"
+        android:textColor="@color/boja_text"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        android:typeface="serif"
+        app:layout_constraintBottom_toBottomOf="parent"
+
+        app:layout_constraintStart_toEndOf="@+id/imageView4"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.771" />
+
+    <TextView
+        android:id="@+id/textView_cijena"
+        android:layout_width="115dp"
+        android:layout_height="31dp"
+        android:fontFamily="sans-serif"
+        android:gravity="right|center"
+        android:padding="1dp"
+        android:text="20.00KM"
+        android:textColor="@color/boja_text"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:typeface="serif"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textView_naziv_jela"
+        app:layout_constraintHorizontal_bias="0.73"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.511" />
+
+
+    <Button
+        android:id="@+id/jelo_button"
+        android:layout_width="41dp"
+        android:layout_height="47dp"
+        android:backgroundTint="@color/dark_pink"
+        android:gravity="center"
+        android:paddingLeft="2dp"
+        android:paddingTop="2dp"
+        android:paddingRight="2dp"
+        android:paddingBottom="2dp"
+        android:text="+"
+        android:textSize="18dp"
+        android:textColor="@color/boja_text"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.956"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.509" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="58dp"
+        android:paddingLeft="13dp"
+        android:layout_height="47dp"
+        android:layout_marginEnd="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/textView_naziv_jela"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.526"
+        app:srcCompat="@drawable/primjer" />
+</androidx.constraintlayout.widget.ConstraintLayout>

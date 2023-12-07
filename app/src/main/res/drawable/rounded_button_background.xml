@@ -1,0 +1,6 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <solid android:color="#f9deee"/> <!-- Boja gumba - ovdje je korištena roza boja -->
+    <item android:drawable="@drawable/button_x"
+        android:gravity="center" /> <!-- Adjust gravity as needed -->
+</shape>
