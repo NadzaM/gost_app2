@@ -1,45 +1,28 @@
 <!-- popup_layout.xml -->
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="410dp"
-    android:layout_height="250dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
 
     android:background="@drawable/background_shape">
 
 
-        <TextView
-            android:id="@+id/textView_title"
-            android:layout_width="370dp"
-            android:layout_height="35dp"
-            android:gravity="center"
-            android:text="Naziv jela"
-            android:textColor="@color/boja_text"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.39"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.005" />
-
     <TextView
-        android:id="@+id/textView_content"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:id="@+id/textView_title"
+        android:layout_width="370dp"
+        android:layout_height="35dp"
         android:gravity="center"
-        android:text="opis"
+        android:text="Naziv jela"
         android:textColor="@color/boja_text"
-        android:textSize="12sp"
+        android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.39"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView_title"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.021" />
 
     <Button
 
@@ -57,10 +40,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.957"
+        app:layout_constraintHorizontal_bias="0.958"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.004" />
+        app:layout_constraintVertical_bias="0.02" />
 
     <Button
 
@@ -76,18 +59,19 @@
         android:text="+"
         android:textColor="@color/boja_text"
         android:textStyle="bold"
+        android:translationZ="10dp"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.954"
+        app:layout_constraintHorizontal_bias="0.928"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:layout_constraintVertical_bias="0.095" />
 
     <Button
         android:id="@+id/minusButton"
         android:layout_width="61dp"
         android:layout_height="34dp"
-        android:layout_marginEnd="7dp"
         android:backgroundTint="@color/gradient_end"
         android:gravity="top|center"
         android:paddingLeft="2dp"
@@ -99,31 +83,31 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/brojacTextView"
-        app:layout_constraintHorizontal_bias="0.989"
+        app:layout_constraintHorizontal_bias="0.557"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:layout_constraintVertical_bias="0.095"
         app:srcCompat="@android:drawable/btn_plus" />
 
     <TextView
         android:id="@+id/brojacTextView"
         android:layout_width="36dp"
         android:layout_height="26dp"
+        android:layout_marginTop="8dp"
         android:gravity="top|center"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/plusButton"
-        app:layout_constraintHorizontal_bias="0.966"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.728"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.986" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:layout_constraintVertical_bias="0.095" />
 
     <Button
         android:id="@+id/okButton"
         android:layout_width="70dp"
         android:layout_height="48dp"
-        android:layout_marginEnd="7dp"
+        android:layout_marginTop="34dp"
         android:backgroundTint="@color/gradient_end"
         android:gravity="center"
         android:paddingLeft="2dp"
@@ -135,21 +119,33 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/brojacTextView"
-        app:layout_constraintHorizontal_bias="0.125"
+        app:layout_constraintHorizontal_bias="0.046"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.986"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@android:drawable/btn_plus" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textView_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.924" />
+
+    <TextView
+        android:id="@+id/textView2"
         android:layout_width="407dp"
-        android:layout_height="135dp"
+        android:layout_height="123dp"
         android:text=""
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.119" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
@@ -13,21 +14,30 @@ import com.release.gfg1.DBHelper
 
 
 class JelovnikActivity : AppCompatActivity() {
-    private lateinit var sharedPreferences: SharedPreferences
 
+    //UNAPRIJED DEF SHAREDPREF I BAZE
+    private lateinit var sharedPreferences: SharedPreferences
     private lateinit var dbHelper: DBHelper
+    private lateinit var sharedIDKorisnik: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
+        //POSTAVLJANJE PROZORA
         super.onCreate(savedInstanceState)
         ActivityManager.addActivity(this)
         setContentView(R.layout.activity_jelovnik)
         sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        sharedIDKorisnik = getSharedPreferences("userIDPrefs", Context.MODE_PRIVATE)
+        val idShared = sharedIDKorisnik.getInt("ulogovaniKorisnikID", 0)
 
+
+        //ELEMENTI XML-a
         val buttonX : Button = findViewById(R.id.button_x)
         val button_dorucak : ImageButton = findViewById(R.id.dorucak_button)
         val button_supe_i_corbe : ImageButton = findViewById(R.id.supe_i_corbe_button)
         val cartText : TextView = findViewById(R.id.textViewCart)
+
+        //LISTENERI
         button_dorucak.setOnClickListener {
             val intent = Intent(this@JelovnikActivity, DorucakActivity::class.java)
             startActivity(intent)
@@ -81,15 +91,13 @@ class JelovnikActivity : AppCompatActivity() {
         dodajJeloUBazu(bundevaSupa)
         dodajJeloUBazu(grah)
 
-//DODAVANJE NEKIH KORISNIKA
-        val nadza = Korisnik(ime = "Nadža", prezime = "Memić", rodjenje = "16.08.1998", email = "nadzamemic@hotmail.com", password = "1234", tipKorisnika = TipKorisnika.GOST)
-        val alisa = Korisnik(ime = "Alisa", prezime = "Brujić", rodjenje = "04.02.1998", email = "abrujic1@etfunsa.ba", password = "1234", tipKorisnika = TipKorisnika.KUHAR)
 
         val defaultValue = 0
 
 
         val cartValue = sharedPreferences.getInt("cartValue", defaultValue)
         cartText.text = cartValue.toString()
+
 
     }
 

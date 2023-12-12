@@ -6,6 +6,7 @@ import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import android.util.Log
 import com.example.gost_app.Jelo
 import com.example.gost_app.Narudzba
 
@@ -24,8 +25,8 @@ class DBHelper(context: Context, factory: SQLiteDatabase.CursorFactory?) :
                 + CIJENA + " REAL" + ")")
 
         db.execSQL(query)
-        val query2: String = ("CREATE TABLE IF NOT EXISTS " + KORISNICI + " ("
-                + ID_KORISNIK + " INTEGER PRIMARY KEY, "
+        val query2: String = ("CREATE TABLE " + KORISNICI + " ("
+                + ID_KORISNIK + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + IME + " TEXT,"
                 + PREZIME + " TEXT,"
                 + RODJENJE + " TEXT,"
@@ -34,13 +35,16 @@ class DBHelper(context: Context, factory: SQLiteDatabase.CursorFactory?) :
                 + TIPKORISNIKA + " TEXT" + ")")
         db.execSQL(query2)
 
-        val query3: String = ("CREATE TABLE IF NOT EXISTS " + NARUDZBA + " ("
+        val query3: String = ("CREATE TABLE " + NARUDZBA + " ("
                 + ID_NARUDZBA + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + ID_KORISNIKA + " INTEGER,"
                 + ID_JELA + " INTEGER,"
                 + BROJ_STOLA + " INTEGER,"
                 + PLACENO + " INTEGER,"
-                + ZAHTJEVI + " TEXT"
+                + ZAHTJEVI + " TEXT,"
+                + DOSTAVLJENO + " INTEGER,"
+                + SPREMLJENO + " INTEGER,"
+                + ZA_PONIJETI + " INTEGER,"
                 + "FOREIGN KEY (" + ID_KORISNIKA + ") REFERENCES " + KORISNICI + "(" + ID_KORISNIK + "),"
                 + "FOREIGN KEY (" + ID_JELA + ") REFERENCES " + JELOVNIK + "(" + ID_JELO + ")"
                 + ")")
@@ -52,6 +56,8 @@ class DBHelper(context: Context, factory: SQLiteDatabase.CursorFactory?) :
     override fun onUpgrade(db: SQLiteDatabase, p1: Int, p2: Int) {
         // this method is to check if table already exists
         db.execSQL("DROP TABLE IF EXISTS $JELOVNIK")
+        db.execSQL("DROP TABLE IF EXISTS $KORISNICI")
+        db.execSQL("DROP TABLE IF EXISTS $NARUDZBA")
         onCreate(db)
     }
 
@@ -80,27 +86,32 @@ class DBHelper(context: Context, factory: SQLiteDatabase.CursorFactory?) :
         db.insert(KORISNICI, null, values)
         db.close()
     }
+
+    fun addNarudzba(narudzba: Narudzba){
+        val values = ContentValues()
+        values.put(ID_KORISNIKA, narudzba.idKorisnika)
+        values.put(ID_JELA, narudzba.idJela)
+        values.put(BROJ_STOLA, narudzba.brojStola)
+        values.put(PLACENO, narudzba.placeno)
+        values.put(ZAHTJEVI, narudzba.zahtjevi)
+        values.put(DOSTAVLJENO, narudzba.dostavljeno)
+        values.put(SPREMLJENO, narudzba.spremljeno)
+        values.put(ZA_PONIJETI, narudzba.zaPonijeti)
+        val db = this.writableDatabase
+        db.insert(NARUDZBA, null, values)
+        db.close()
+    }
     fun addJelo(jelo: Jelo) {
         val values = ContentValues()
         values.put(KATEGORIJA, jelo.kategorija)
         values.put(NAZIV_JELA, jelo.nazivJela)
         values.put(CIJENA, jelo.cijena)
         values.put(OPIS, jelo.opis)
-
         val db = this.writableDatabase
         db.insert(JELOVNIK, null, values)
         db.close()
     }
-    fun addNarudzba(narudzba: Narudzba) {
-        val values = ContentValues()
-        values.put(BROJ_STOLA, narudzba.broj_stola)
-        values.put(PLACENO, narudzba.placeno)
-        values.put(ZAHTJEVI, narudzba.zahtjevi)
 
-        val db = this.writableDatabase
-        db.insert(NARUDZBA, null, values)
-        db.close()
-    }
 
     fun getName(): Cursor? {
 
@@ -139,6 +150,9 @@ class DBHelper(context: Context, factory: SQLiteDatabase.CursorFactory?) :
         val BROJ_STOLA = "broj_stola"
         val PLACENO = "placeno"
         val ZAHTJEVI = "zahtjevi"
+        val DOSTAVLJENO = "dostavljeno"
+        val SPREMLJENO = "spremljeno"
+        val ZA_PONIJETI = "za_ponijeti"
         val ID_KORISNIKA = "id_korisnika"
         val ID_JELA = "id_jela"
     }
@@ -171,40 +185,25 @@ class DBHelper(context: Context, factory: SQLiteDatabase.CursorFactory?) :
 
         return jelaList
     }
-    fun nadjiKorisnikaPoEmailu(email: String): String? {
+
+    fun getIDByEmail(email: String): Int {
         val db = this.readableDatabase
+        val query = "SELECT $ID_KORISNIK FROM $KORISNICI WHERE $EMAIL = ?"
+        val cursor = db.rawQuery(query, arrayOf(email))
+        var userID = -1 // Postavljamo na nevaljani ID kao podrazumijevanu vrijednost
 
-        // Definirajte stupce koje želite izvući
-        val columns = arrayOf(ID_KORISNIK, IME, PREZIME, RODJENJE, EMAIL, PASSWORD, TIPKORISNIKA)
-
-        // SQL upit za dohvaćanje korisnika s određenim emailom
-        val selection = "$EMAIL = ?"
-        val selectionArgs = arrayOf(email)
-
-        val cursor = db.query(KORISNICI, columns, selection, selectionArgs, null, null, null)
-
-        var korisnik: String? = null
-
-        if (cursor != null && cursor.moveToFirst()) {
-            // Dohvatite potrebne podatke iz Cursora
-            val id = cursor.getInt(cursor.getColumnIndex(ID_KORISNIK))
-            val ime = cursor.getString(cursor.getColumnIndex(IME))
-            val prezime = cursor.getString(cursor.getColumnIndex(PREZIME))
-            val rodjenje = cursor.getString(cursor.getColumnIndex(RODJENJE))
-            val email = cursor.getString(cursor.getColumnIndex(EMAIL))
-            val password = cursor.getString(cursor.getColumnIndex(PASSWORD))
-            val tipKorisnika = cursor.getString(cursor.getColumnIndex(TIPKORISNIKA))
-
-            // Ovdje možete koristiti podatke o korisniku kako želite
-            korisnik = "$id, $ime, $prezime, $rodjenje, $email, $password, $tipKorisnika"
-
-            // Zatvorite cursor nakon što dohvatite podatke
-            cursor.close()
+        cursor.use {
+            if (it.moveToFirst()) {
+                userID = it.getInt(it.getColumnIndex(ID_KORISNIK))
+                Log.d("UserID", "Pronađen ID korisnika: $userID")
+            }else{
+                Log.d("UserID", "Nije pronađen ID korisnika za e-mail: $email")
+            }
         }
 
-        db.close()
-        return korisnik
+        return userID
     }
+
 
 
 
